@@ -73,7 +73,7 @@ Once started, it will:
 * Inject or update a line like:
 
 ```markdown
-Last Seen -- 03:24PM 14/07/2025 Monday
+Last Seen - 03:24PM 14/07/2025 Monday
 ```
 
 * Push the update as a commit
