@@ -38,7 +38,6 @@ from dotenv import load_dotenv
 env_path = Path(__file__).parent / '.env'
 load_dotenv(dotenv_path=env_path)
 
-# Try to load python-dotenv for .env file support
 try:
     from dotenv import load_dotenv
     load_dotenv()
@@ -94,12 +93,12 @@ class GitHubReadmeUpdater:
         """Update or add timestamp to the content"""
         new_timestamp = self.get_current_timestamp()
         
-        # Check if timestamp already exists
+        
         if re.search(self.timestamp_pattern, content):
-            # Replace existing timestamp
+            
             updated_content = re.sub(self.timestamp_pattern, new_timestamp, content)
         else:
-            # Add timestamp at the end if it doesn't exist
+            
             updated_content = content.rstrip() + "\n\n" + new_timestamp + "\n"
         
         return updated_content
@@ -146,29 +145,23 @@ class GitHubReadmeUpdater:
     
     def update_readme_timestamp(self) -> bool:
         """Main function to update README with new timestamp"""
-        # Get current file content
+        
         file_data = self.get_file_content()
         if not file_data:
             return False
         
-        # Decode content
         current_content = self.decode_content(file_data['content'])
-        
-        # Update timestamp
         updated_content = self.update_timestamp_in_content(current_content)
         
-        # Check if content actually changed
         if current_content == updated_content:
             print("⏭️  No changes needed - timestamp already current")
             return True
-        
-        # Update file on GitHub
         return self.update_file_on_github(updated_content, file_data['sha'])
     
     def get_random_interval(self) -> int:
         """Get random interval between 1 hour and 6 hours (in seconds)"""
-        min_seconds = 1 * 60 * 60  # 1 hour
-        max_seconds = 6 * 60 * 60  # 6 hours
+        min_seconds = 1 * 60 * 60  
+        max_seconds = 6 * 60 * 60  
         return random.randint(min_seconds, max_seconds)
     
     def run_continuous(self):
@@ -181,17 +174,13 @@ class GitHubReadmeUpdater:
         print("🛑 Press Ctrl+C to stop")
         print("-" * 50)
         
-        # Test connection first
         if not self.test_github_connection():
             return
         
         try:
             while True:
-                # Update timestamp
                 success = self.update_readme_timestamp()
-                
-                if success:
-                    # Get random interval
+                if success: 
                     interval = self.get_random_interval()
                     hours = interval // 3600
                     minutes = (interval % 3600) // 60
@@ -199,12 +188,10 @@ class GitHubReadmeUpdater:
                     print(f"⏳ Next update in: {hours}h {minutes}m")
                     print(f"⏰ Next update at: {datetime.now().strftime('%I:%M%p %d/%m/%Y')}")
                     print("-" * 50)
-                    
-                    # Wait for the random interval
                     time.sleep(interval)
                 else:
                     print("❌ Failed to update. Retrying in 10 minutes...")
-                    time.sleep(600)  # Wait 10 minutes before retrying
+                    time.sleep(600)  
                 
         except KeyboardInterrupt:
             print("\n🛑 Updater stopped by user")
@@ -213,12 +200,11 @@ class GitHubReadmeUpdater:
 
 def main():
     """Main function to run the script"""
-    # Display copyright and info
+    
     print(__doc__)
     print("🔧 GitHub README Timestamp Updater Setup")
     print("=" * 50)
     
-    # Check for .env file support
     if DOTENV_AVAILABLE:
         print("✅ .env file support enabled")
         if os.path.exists('.env'):
@@ -230,8 +216,6 @@ def main():
         print("📝 Using environment variables and interactive input only")
     
     print("-" * 50)
-    
-    # Get configuration from environment variables (.env or system)
     token = os.getenv('GITHUB_TOKEN')
     username = os.getenv('GITHUB_USERNAME')
     repo_name = os.getenv('GITHUB_REPO')
@@ -258,14 +242,14 @@ def main():
     if not all([token, username, repo_name]):
         print("❌ Missing required information. Exiting...")
         return
-    
+        
     print(f"\n📊 Configuration:")
     print(f"👤 Username: {username}")
     print(f"📁 Repository: {repo_name}")
     print(f"📄 README Path: {readme_path}")
     print("=" * 50)
     
-    # Create and run updater
+    
     updater = GitHubReadmeUpdater(token, username, repo_name, readme_path)
     updater.run_continuous()
 
