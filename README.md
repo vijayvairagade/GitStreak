@@ -1,9 +1,6 @@
 # GitStreak
-Here's a professional and detailed `README.md` file tailored for your GitHub project based on the provided script:
 
----
-
-# 🕒 GitHub README Timestamp Updater
+## 🕒 GitHub README Timestamp Updater
 
 > ⚙️ Automatically updates your GitHub repository's `README.md` file with a current timestamp at random intervals using the GitHub API.
 
