@@ -9,7 +9,6 @@
 ![Python](https://img.shields.io/badge/Python-3.7%2B-blue)
 ![GitHub API](https://img.shields.io/badge/API-GitHub%20v3-orange)
 ![Automation](https://img.shields.io/badge/Automation-Cron%20style-green)
-![License](https://img.shields.io/badge/License-Custom-lightgrey)
 
 ---
 
@@ -107,7 +106,8 @@ Use `Ctrl + C` to manually stop the continuous update loop.
 **A:** No. It only replaces or appends the timestamp line that matches this pattern:
 
 ```regex
-Last Seen -- \d{2}:\d{2}[AP]M \d{2}/\d{2}/\d{4} \w+
+Example
+Last Seen - 10:12AM 14/07/2025 Monday
 ```
 
 **Q:** Can I run this on a server or as a background service?
