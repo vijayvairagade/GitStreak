@@ -11,6 +11,7 @@
 ![Automation](https://img.shields.io/badge/Automation-Cron%20style-green)
 
 ---
+## ⛔ Make sure to create a new and PRIVATE repository for this.
 
 ## 📌 Features
 
@@ -55,7 +56,7 @@ README_PATH=README.md  # optional if your file is named differently
 ### 🔁 Run the script
 
 ```bash
-python updater.py
+python main.py
 ```
 
 ### 🧪 You will be prompted for:
