@@ -32,15 +32,6 @@ Here's a professional and detailed `README.md` file tailored for your GitHub pro
 * Python 3.7+
 * GitHub Personal Access Token (with `repo` or `contents:write` scope)
 
----
-
-## 📦 Installation
-
-```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
-pip install -r requirements.txt
-```
 
 > Make sure to install `python-dotenv` if you want to use `.env` file support:
 
